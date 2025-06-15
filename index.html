@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shubham's Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .logo::before {
+            content: "◆";
+            margin-right: 10px;
+            color: #4a90e2;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #4a90e2;
+        }
+
+        .resume-btn {
+            background: #4a90e2;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .resume-btn:hover {
+            background: #357abd;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600"><defs><radialGradient id="grad" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:%23f0e6d2;stop-opacity:0.8" /><stop offset="100%" style="stop-color:%23d4b896;stop-opacity:0.4" /></radialGradient></defs><rect width="1000" height="600" fill="url(%23grad)"/></svg>');
+            padding: 150px 0 100px;
+            text-align: left;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            opacity: 0.9;
+        }
+
+        .view-projects-btn {
+            background: #4a90e2;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .view-projects-btn:hover {
+            background: #357abd;
+            transform: translateY(-2px);
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .about h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .about p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 800px;
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 80px 0;
+        }
+
+        .projects h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        .project-category {
+            margin-bottom: 4rem;
+        }
+
+        .project-category h3 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: #4a90e2;
+            border-bottom: 2px solid #4a90e2;
+            padding-bottom: 0.5rem;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .project-icon {
+            width: 60px;
+            height: 60px;
+            background: #4a90e2;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .project-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .project-link {
+            background: rgba(74, 144, 226, 0.2);
+            color: #4a90e2;
+            padding: 0.5rem 0.8rem;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .project-link:hover {
+            background: #4a90e2;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Blog Section */
+        .blogs {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .blogs h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .blog-post {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .blog-content {
+            flex: 1;
+        }
+
+        .blog-post h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #4a90e2;
+        }
+
+        .blog-post p {
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .read-more-btn {
+            background: transparent;
+            color: #4a90e2;
+            border: 2px solid #4a90e2;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .read-more-btn:hover {
+            background: #4a90e2;
+            color: white;
+        }
+
+        .blog-image {
+            width: 200px;
+            height: 150px;
+            background: linear-gradient(45deg, #4a90e2, #357abd);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+        }
+
+        .contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .contact-form {
+            max-width: 500px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .send-btn {
+            background: #4a90e2;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .send-btn:hover {
+            background: #357abd;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: #4a90e2;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .blog-post {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .blog-image {
+                width: 100%;
+                height: 200px;
+            }
+        }
+
+        /* Success Message */
+        .success-message {
+            background: #28a745;
+            color: white;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Shubham's Portfolio</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#blogs">Blogs</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="https://drive.google.com/file/d/YOUR_RESUME_FILE_ID/view" class="resume-btn">Resume</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div>
+                    <h1>Hi, I'm Shubham</h1>
+                    <p>I'm a software engineer based in India, specializing in RPA automation, machine learning, and database management. I'm passionate about creating innovative solutions and crafting intelligent systems.</p>
+                    <a href="#projects" class="view-projects-btn">View Projects</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <div class="container">
+                <h2>About Me</h2>
+                <p>I'm a software engineer with a passion for building scalable and efficient applications. I have experience in RPA automation, machine learning, computer vision, and database management. I enjoy solving complex problems and collaborating with teams to deliver high-quality software solutions that make a real impact.</p>
+            </div>
+        </section>
+
+        <section id="projects" class="projects">
+            <div class="container">
+                <h2>Projects</h2>
+                
+                <div class="project-category">
+                    <h3>RPA & Automation</h3>
+                    <div class="project-grid">
+                        <div class="project-card">
+                            <div class="project-icon">🤖</div>
+                            <h4>Weather-Based Clothing Guide Bot</h4>
+                            <p>Designed an RPA bot for personalized clothing recommendations based on weather conditions, helping users make informed wardrobe choices.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/Shubhamahm/Email_Extractor_Bot" class="project-link" target="_blank">
+                                    <span>💻</span> Source Code
+                                </a>
+                                <a href="https://github.com/Shubhamahm/Phone_Number_Cleaner_Bot" class="project-link" target="_blank">
+                                    <span>🤖</span> Related Bot
+                                </a>
+                                <a href="https://www.linkedin.com/in/shubham-jha-792a55134/" class="project-link" target="_blank">
+                                    <span>👤</span> LinkedIn
+                                </a>
+                            </div>
+                        <div class="project-card">
+                            <div class="project-icon">📈</div>
+                            <h4>Sales Performance Analysis</h4>
+                            <p>Analyze sales data using Pandas to generate useful business insights and performance metrics for data-driven decision making.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/Shubhamahm/Analyzing_Sales_performance" class="project-link" target="_blank">
+                                    <span>💻</span> Source Code
+                                </a>
+                                <a href="https://github.com/Shubhamahm/Analyzing_Sales_performance" class="project-link" target="_blank">
+                                    <span>📊</span> Dataset
+                                </a>
+                                <a href="https://github.com/Shubhamahm/Analyzing_Sales_performance" class="project-link" target="_blank">
+                                    <span>📈</span> View Analysis
+                                </a>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="project-card">
+                            <div class="project-icon">📧</div>
+                            <h4>Invoice Data Extraction and Email Automation</h4>
+                            <p>Extracting key details from invoice PDFs, updating an Excel tracker, and sending confirmation emails to vendors automatically.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/Shubhamahm/Invoice_Data_Extraction_and_Email_Automation" class="project-link" target="_blank">
+                                    <span>💻</span> Source Code
+                                </a>
+                                <a href="https://github.com/Shubhamahm/Email_Extractor_Bot" class="project-link" target="_blank">
+                                    <span>📧</span> Email Bot
+                                </a>
+                                <a href="https://github.com/Shubhamahm/Invoice_Data_Extraction_and_Email_Automation" class="project-link" target="_blank">
+                                    <span>📹</span> View Project
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-category">
+                    <h3>Database Management & Optimization</h3>
+                    <div class="project-grid">
+                        <div class="project-card">
+                            <div class="project-icon">👥</div>
+                            <h4>Employee Management System</h4>
+                            <p>Designed a MySQL database to manage employees, payroll, attendance, and departments with optimized queries for data analysis.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/Shubhamahm/Employee-Management-System" class="project-link" target="_blank">
+                                    <span>💻</span> Source Code
+                                </a>
+                                <a href="https://github.com/Shubhamahm/Employee-Management-System" class="project-link" target="_blank">
+                                    <span>🗄️</span> Database Schema
+                                </a>
+                                <a href="https://github.com/Shubhamahm/Employee-Management-System" class="project-link" target="_blank">
+                                    <span>📊</span> View Project
+                                </a>
+                            </div>
+                        </div>
+                        <div class="project-card">
+                            <div class="project-icon">📚</div>
+                            <h4>Library Books Management</h4>
+                            <p>Developed a MySQL database system to manage book records, borrowers, and lending history with efficient query handling.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/Shubhamahm/Library-Books-Management" class="project-link" target="_blank">
+                                    <span>💻</span> Source Code
+                                </a>
+                                <a href="https://github.com/Shubhamahm/Library-Books-Management" class="project-link" target="_blank">
+                                    <span>🗄️</span> Database Schema
+                                </a>
+                                <a href="https://github.com/Shubhamahm/Library-Books-Management" class="project-link" target="_blank">
+                                    <span>📖</span> View Project
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-category">
+                    <h3>Machine Learning & Computer Vision</h3>
+                    <div class="project-grid">
+                        <div class="project-card">
+                            <div class="project-icon">🚗</div>
+                            <h4>Car Price Prediction Model</h4>
+                            <p>A machine learning project using Linear Regression to predict car prices based on various features and market conditions.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/Shubhamahm/Car_Price_Prediction_Model" class="project-link" target="_blank">
+                                    <span>💻</span> Source Code
+                                </a>
+                                <a href="https://github.com/Shubhamahm/Car_Price_Prediction_Model" class="project-link" target="_blank">
+                                    <span>📊</span> Dataset
+                                </a>
+                                <a href="https://github.com/Shubhamahm/Car_Price_Prediction_Model" class="project-link" target="_blank">
+                                    <span>📓</span> View Project
+                                </a>
+                            </div>
+                        </div>
+                        <div class="project-card">
+                            <div class="project-icon">🚑</div>
+                            <h4>Smart Detection of Ambulances in Traffic</h4>
+                            <p>Developed a vision-based system using OpenCV & TensorFlow for emergency response and traffic management.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/Shubhamahm/Smart-Detection-of-Ambulances-in-Traffic" class="project-link" target="_blank">
+                                    <span>💻</span> Source Code
+                                </a>
+                                <a href="https://github.com/Shubhamahm/Smart-Detection-of-Ambulances-in-Traffic" class="project-link" target="_blank">
+                                    <span>🎥</span> Video Dataset
+                                </a>
+                                <a href="https://github.com/Shubhamahm/Smart-Detection-of-Ambulances-in-Traffic" class="project-link" target="_blank">
+                                    <span>🤖</span> View Project
+                                </a>
+                            </div>
+                        </div>
+                        <div class="project-card">
+                            <div class="project-icon">⚠️</div>
+                            <h4>Vehicle Collision Detection</h4>
+                            <p>Built an image processing model to enhance road safety by detecting potential vehicle collisions in real-time.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/Shubhamahm/Vehicle-Collision-Detection" class="project-link" target="_blank">
+                                    <span>💻</span> Source Code
+                                </a>
+                                <a href="https://github.com/Shubhamahm/Vehicle-Collision-Detection" class="project-link" target="_blank">
+                                    <span>🎥</span> Test Videos
+                                </a>
+                                <a href="https://github.com/Shubhamahm/Vehicle-Collision-Detection" class="project-link" target="_blank">
+                                    <span>📊</span> View Project
+                                </a>
+                            </div>
+                        </div>
+                        <div class="project-card">
+                            <div class="project-icon">👤</div>
+                            <h4>Face Detection Attendance System</h4>
+                            <p>Automated real-time attendance tracking using facial recognition technology for enhanced security and efficiency.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/Shubhamahm/Face-Detection-Attendance-System" class="project-link" target="_blank">
+                                    <span>💻</span> Source Code
+                                </a>
+                                <a href="https://github.com/Shubhamahm/Face-Detection-Attendance-System" class="project-link" target="_blank">
+                                    <span>📸</span> Sample Images
+                                </a>
+                                <a href="https://github.com/Shubhamahm/Face-Detection-Attendance-System" class="project-link" target="_blank">
+                                    <span>🚀</span> View Project
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="blogs" class="blogs">
+            <div class="container">
+                <h2>Blogs</h2>
+                <div class="blog-post">
+                    <div class="blog-content">
+                        <span class="blog-category">Tech Blog</span>
+                        <h3>The Future of RPA and Machine Learning</h3>
+                        <p>Exploring the latest trends and technologies shaping the future of robotic process automation, including serverless architecture, intelligent automation, and AI-powered tools.</p>
+                        <a href="#" class="read-more-btn">Read More</a>
+                    </div>
+                    <div class="blog-image">🚀</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2>Contact</h2>
+                <div class="success-message" id="successMessage">
+                    Message sent successfully! I'll get back to you soon.
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="send-btn">Send</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="https://github.com/Shubhamahm" title="GitHub">💻</a>
+                <a href="https://www.linkedin.com/in/shubham-jha-792a55134/" title="LinkedIn">💼</a>
+                <a href="mailto:shubham@example.com" title="Email">📧</a>
+            </div>
+            <p>&copy; 2024 Shubham. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Contact form handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                message: formData.get('message')
+            };
+            
+            // Simulate form submission (replace with actual backend API)
+            console.log('Form submitted:', data);
+            
+            // Show success message
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // Reset form
+            this.reset();
+            
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+                document.getElementById('successMessage').style.display = 'none';
+            }, 5000);
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(0, 0, 0, 0.9)';
+            } else {
+                header.style.background = 'rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Project cards animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all project cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
